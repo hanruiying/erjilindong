@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>省市二级联动</title>
+    <script src="js/jquery.js"></script>
+    <style type="text/css">
+    </style>
+</head>
+<body>
+    <div>
+        省：
+        <select id="province">
+            <option>- -请选择- -</option>
+            <option value="0">湖北</option>
+            <option value="1">湖南</option>
+            <option value="2">河北</option>
+            <option value="3">河南</option>
+        </select>
+        市：
+        <select id="city"></select>
+    </div>
+    <script>
+        $(function(){
+            var cities=new Array(3);
+            cities[0]=new Array("武汉市","黄冈市","襄阳市","荆州市");
+            cities[1]=new Array("长沙市","株洲市","岳阳市","荆州市");
+            cities[2]=new Array("石家庄市","邯郸市","廊坊市","保定市");
+            cities[3]=new Array("郑州市","洛阳市","开封市","安阳市");
+          $("#province").change(function(){
+              $("#city").empty();
+                   var val=$(this).val();
+                   $.each(cities,function(i,item){
+                       if(val==i){
+                           $.each(cities[i],function(j,n){
+                               var textNode=document.createTextNode(n);
+                               var opEle=document.createElement("option");
+                               $(opEle).append(textNode);
+                               $(opEle).appendTo($("#city"));
+                           })
+                       }
+                   })
+                  })
+        })
+    </script>
+</body>
+</html>
